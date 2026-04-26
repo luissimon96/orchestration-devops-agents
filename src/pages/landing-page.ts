@@ -118,6 +118,19 @@ export class HtmlPage {
     </section>
     
     <section>
+      <h2>O que o Boss precisa saber</h2>
+      <p>Antes de iniciar qualquer execução, o Boss coleta e valida todas as informações necessárias. Entradas incompletas não geram saída parcial — o Boss solicita os dados faltantes e aguarda confirmação antes de prosseguir.</p>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>Região Azure</strong> — ex: <code>eastus</code>, <code>brazilsouth</code>, <code>westeurope</code></li>
+        <li><strong>Naming e convenção de nomenclatura</strong> — prefixo, sufixo e padrão de nomes dos recursos</li>
+        <li><strong>Configuração de rede (VNet)</strong> — faixa CIDR, subnets e isolamento de rede</li>
+        <li><strong>Requisitos de identidade</strong> — grupos Entra ID, RBAC roles e políticas de acesso</li>
+        <li><strong>Requisitos externos</strong> — integrações, registros de container e configurações de DNS</li>
+      </ul>
+      <p style="margin-top: 15px;">Todas as informações são validadas antes de qualquer geração de código, garantindo artefatos completos e prontos para produção.</p>
+    </section>
+
+    <section>
       <h2>Arquitetura Azure</h2>
       <p>Boss utiliza serviços nativos do Azure:</p>
       <ul style="margin-left: 20px; margin-top: 10px;">
@@ -164,6 +177,29 @@ export class HtmlPage {
         <li><strong>Argo CD (GitOps)</strong> — Manifesto <code>argo-app.yaml</code> para bootstrap GitOps no cluster Azure Red Hat OpenShift</li>
         <li><strong>Documentação técnica</strong> — README gerado automaticamente com arquitetura, variáveis, pré-requisitos e exemplos de uso</li>
       </ul>
+    </section>
+
+    <section>
+      <h2>Perguntas Frequentes (FAQ)</h2>
+      <dl>
+        <dt><h3>O que é o Boss?</h3></dt>
+        <dd>Boss é um orquestrador de agents DevOps focado em Azure. Você descreve o que precisa em linguagem natural e ele cria sub-agents especializados que trabalham em paralelo para entregar a infraestrutura completa como código.</dd>
+
+        <dt><h3>Como funciona o Boss?</h3></dt>
+        <dd>Ao receber uma solicitação, o Boss analisa a intenção, decompõe em tarefas independentes e aciona agents especializados (Rede, Identidade, Plataforma, Terraform) simultaneamente. Ao final, agrega todos os resultados em um único conjunto de artefatos auditáveis.</dd>
+
+        <dt><h3>O que recebo ao final de uma execução?</h3></dt>
+        <dd>Você recebe artefatos prontos para uso: arquivos Terraform (<code>main.tf</code>, <code>variables.tf</code>), pipeline CI/CD (<code>github-actions.yml</code>), manifesto GitOps (<code>argo-app.yaml</code>) e documentação técnica gerada automaticamente.</dd>
+
+        <dt><h3>O Boss suporta apenas Azure?</h3></dt>
+        <dd>Sim. O Boss é Azure-native por design. Toda a terminologia, serviços e integrações são voltados para o ecossistema Azure — Virtual Network, Microsoft Entra ID, Azure Red Hat OpenShift, Azure Container Registry e Azure Storage.</dd>
+
+        <dt><h3>Como começar a usar o Boss?</h3></dt>
+        <dd>Clone o repositório, configure suas credenciais Azure e execute o Boss com sua solicitação em linguagem natural. Em minutos você terá todos os artefatos de infraestrutura prontos para revisar e aplicar.</dd>
+
+        <dt><h3>Preciso de suporte ou tenho dúvidas?</h3></dt>
+        <dd>Entre em contato pelo GitHub ou pelo suporte da comunidade. Abrimos issues, respondemos perguntas técnicas e mantemos documentação atualizada para cada versão lançada.</dd>
+      </dl>
     </section>
   </main>`;
   }
