@@ -112,6 +112,67 @@ export class HtmlPage {
     ${this.heroSection}
     
     <section>
+      <h2>Como funciona o fluxo Boss (Diagrama ARO)</h2>
+      <p>Veja como o Boss transforma um pedido em linguagem natural em infraestrutura Azure completa:</p>
+      <figure>
+        <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;font-family:monospace;font-size:13px;">
+          <!-- Entrada: pedido do usuário -->
+          <rect x="10" y="130" width="150" height="50" rx="8" fill="#0078d4" stroke="#005a9e" stroke-width="2"/>
+          <text x="85" y="150" text-anchor="middle" fill="white" font-weight="bold">Pedido do</text>
+          <text x="85" y="168" text-anchor="middle" fill="white">Usuário (input)</text>
+
+          <!-- Seta entrada → Boss -->
+          <line x1="160" y1="155" x2="210" y2="155" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- Boss Orquestrador -->
+          <rect x="210" y="115" width="130" height="80" rx="8" fill="#106ebe" stroke="#005a9e" stroke-width="2"/>
+          <text x="275" y="148" text-anchor="middle" fill="white" font-weight="bold" font-size="15">BOSS</text>
+          <text x="275" y="166" text-anchor="middle" fill="#cde" font-size="11">Orquestrador</text>
+          <text x="275" y="182" text-anchor="middle" fill="#cde" font-size="11">Azure-first</text>
+
+          <!-- Setas Boss → agents (paralelo) -->
+          <line x1="340" y1="135" x2="390" y2="70" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="340" y1="155" x2="390" y2="155" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="340" y1="175" x2="390" y2="240" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Agent Rede -->
+          <rect x="390" y="40" width="120" height="50" rx="6" fill="#50e6ff" stroke="#0099cc" stroke-width="1.5"/>
+          <text x="450" y="60" text-anchor="middle" fill="#003" font-weight="bold">Agent Rede</text>
+          <text x="450" y="77" text-anchor="middle" fill="#003" font-size="11">VNet · Subnets</text>
+
+          <!-- Agent Identidade -->
+          <rect x="390" y="128" width="120" height="50" rx="6" fill="#50e6ff" stroke="#0099cc" stroke-width="1.5"/>
+          <text x="450" y="148" text-anchor="middle" fill="#003" font-weight="bold">Agent Identidade</text>
+          <text x="450" y="165" text-anchor="middle" fill="#003" font-size="11">Entra ID · RBAC</text>
+
+          <!-- Agent Plataforma -->
+          <rect x="390" y="215" width="120" height="50" rx="6" fill="#50e6ff" stroke="#0099cc" stroke-width="1.5"/>
+          <text x="450" y="235" text-anchor="middle" fill="#003" font-weight="bold">Agent Plataforma</text>
+          <text x="450" y="252" text-anchor="middle" fill="#003" font-size="11">ARO · AKS · ACR</text>
+
+          <!-- Setas agents → consolidação -->
+          <line x1="510" y1="65" x2="555" y2="140" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="510" y1="155" x2="555" y2="155" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="510" y1="240" x2="555" y2="175" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Consolidação / Saída -->
+          <rect x="555" y="115" width="130" height="80" rx="8" fill="#107c10" stroke="#0a5e0a" stroke-width="2"/>
+          <text x="620" y="148" text-anchor="middle" fill="white" font-weight="bold">Consolidação</text>
+          <text x="620" y="165" text-anchor="middle" fill="#cfc" font-size="11">Terraform · CI/CD</text>
+          <text x="620" y="181" text-anchor="middle" fill="#cfc" font-size="11">GitOps · Docs</text>
+
+          <!-- Definição da seta -->
+          <defs>
+            <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#666"/>
+            </marker>
+          </defs>
+        </svg>
+        <figcaption style="font-size:12px;color:#666;margin-top:8px;">Fluxo paralelo: Boss decompõe o pedido e aciona agents Azure especializados (VNet, Entra ID, ARO/ACR) simultaneamente. A saída final consolida todos os artefatos.</figcaption>
+      </figure>
+    </section>
+
+    <section>
       <h2>Por que Boss?</h2>
       <p>DevOps moderno exige coordenação entre múltiplas disciplinas: networking, identidade, plataforma, infraestrutura como código e pipelines. Boss automatiza essa orquestração com controle total do processo.</p>
       <p>Resultado: Azure Red Hat OpenShift completamente provisionado com Terraform, GitOps e CI/CD, em minutos — com rastreabilidade de cada etapa.</p>
@@ -142,6 +203,58 @@ export class HtmlPage {
         <li>Azure Storage para Terraform state</li>
       </ul>
       <p style="margin-top: 20px;">A consolidação determinística dos resultados garante que cada agent entrega seu artefato de forma previsível, e o Boss agrega tudo em um único delivery auditável.</p>
+
+      <h3 style="margin-top: 24px;">Rede: VNet e Subnets</h3>
+      <p>Topologia de rede padrão para ARO no Azure:</p>
+      <ul style="margin-left: 20px; margin-top: 8px;">
+        <li><strong>VNet principal:</strong> 10.0.0.0/16 — espaço de endereçamento dedicado ao cluster</li>
+        <li><strong>Subnet master:</strong> 10.0.1.0/24 — nós control plane do ARO</li>
+        <li><strong>Subnet worker:</strong> 10.0.2.0/24 — nós worker do ARO</li>
+        <li><strong>NSG master:</strong> regras de entrada para API server (443) e saída irrestrita para Azure APIs</li>
+        <li><strong>NSG worker:</strong> regras de entrada entre subnets, saída para ACR e Entra ID</li>
+      </ul>
+
+      <h3 style="margin-top: 24px;">CI/CD e GitOps</h3>
+      <p>Pipeline completo do código ao cluster com rastreabilidade total:</p>
+      <ul style="margin-left: 20px; margin-top: 8px;">
+        <li><strong>GitHub Actions:</strong> workflow de CI/CD para terraform plan e apply com aprovação por ambiente</li>
+        <li><strong>Argo CD bootstrap:</strong> instalado no cluster ARO como primeiro workload, gerenciando todos os apps via GitOps</li>
+        <li><strong>Sync policy:</strong> auto-sync em ambiente de desenvolvimento, aprovação manual em produção</li>
+        <li><strong>Repositório GitOps:</strong> estrutura de pastas <code>apps/</code> (workloads), <code>infra/</code> (Terraform), <code>clusters/</code> (configurações por ambiente)</li>
+        <li><strong>Argo CD Application:</strong> aponta para <code>clusters/production/</code>, sincroniza com o estado desejado no repositório</li>
+      </ul>
+
+      <h3 style="margin-top: 24px;">Terraform: módulos, state e outputs</h3>
+      <p>Infraestrutura gerenciada como código com estrutura modular e state remoto:</p>
+      <ul style="margin-left: 20px; margin-top: 8px;">
+        <li><strong>Módulo rede:</strong> VNet, subnets, NSGs e peerings — <code>modules/network/</code></li>
+        <li><strong>Módulo identidade:</strong> Managed Identities, RBAC roles, Entra ID groups — <code>modules/identity/</code></li>
+        <li><strong>Módulo cluster ARO:</strong> cluster OpenShift, node pools, ingresso — <code>modules/aro/</code></li>
+        <li><strong>Backend Azure Storage Blob:</strong> state remoto com lease locking para operações concorrentes seguras</li>
+        <li><strong>Variáveis de entrada:</strong> <code>subscription_id</code>, <code>resource_group</code>, <code>location</code>, <code>cluster_name</code></li>
+        <li><strong>Outputs para CI/CD:</strong> <code>kubeconfig</code>, endpoint do cluster ARO, URL do ACR, IDs de Managed Identity</li>
+      </ul>
+
+      <h3 style="margin-top: 24px;">Cluster ARO: configuração e ingresso</h3>
+      <p>Especificação padrão do cluster Azure Red Hat OpenShift:</p>
+      <ul style="margin-left: 20px; margin-top: 8px;">
+        <li><strong>ARO versão:</strong> OpenShift 4.x — control plane gerenciado pela Microsoft/Red Hat</li>
+        <li><strong>Node pool master:</strong> 3 nós Standard_D8s_v3 — alta disponibilidade do control plane</li>
+        <li><strong>Node pool worker:</strong> mínimo 3 nós Standard_D4s_v3 — escalável conforme demanda</li>
+        <li><strong>Load Balancer:</strong> Azure Load Balancer Standard para ingresso externo de serviços</li>
+        <li><strong>Application Gateway:</strong> opcional — WAF e roteamento L7 para workloads expostos</li>
+        <li><strong>TLS/Certificados:</strong> cert-manager com Let's Encrypt ou certificado corporativo via Azure Key Vault</li>
+        <li><strong>Ingress Controller:</strong> OpenShift Router (HAProxy) para roteamento interno de rotas</li>
+      </ul>
+
+      <h3 style="margin-top: 24px;">Identidade: Managed Identity e RBAC</h3>
+      <p>Cada agent opera com Managed Identity própria, sem credenciais estáticas:</p>
+      <ul style="margin-left: 20px; margin-top: 8px;">
+        <li><strong>Managed Identity — Agent Rede:</strong> role Network Contributor na VNet e subnets</li>
+        <li><strong>Managed Identity — Agent Identidade:</strong> integração com Entra ID para RBAC de cluster</li>
+        <li><strong>Managed Identity — Agent Plataforma:</strong> role Contributor no resource group ARO + AcrPull no ACR</li>
+        <li><strong>Entra ID:</strong> grupo de segurança para administradores do cluster, sincronizado via OIDC</li>
+      </ul>
     </section>
 
     <section>

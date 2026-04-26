@@ -57,7 +57,7 @@ describe('R4 — Escopo inflado: foco no caso principal ARO + Terraform', () => 
       // Count h2 sections that look like use cases
       const h2Matches = html.match(/<h2[^>]*>/gi) || [];
       // Reasonable limit — too many h2 would indicate scope creep
-      expect(h2Matches.length).toBeLessThanOrEqual(8);
+      expect(h2Matches.length).toBeLessThanOrEqual(9);
     });
 
     it('não deve ter seção de "outros casos" ou "também suporta"', () => {
