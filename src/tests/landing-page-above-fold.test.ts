@@ -57,7 +57,9 @@ describe('AC1 — Primeira dobra: promessa clara above the fold', () => {
     });
 
     it('o CTA tem texto de ação (não vazio)', () => {
-      const ctaMatch = html.match(/<button[^>]*class="cta-button"[^>]*>(.*?)<\/button>/i);
+      const ctaMatch =
+        html.match(/<button[^>]*class="cta-button"[^>]*>(.*?)<\/button>/i) ||
+        html.match(/<a[^>]*class="cta-button"[^>]*>(.*?)<\/a>/i);
       expect(ctaMatch).toBeTruthy();
       expect(ctaMatch![1].trim().length).toBeGreaterThan(0);
     });

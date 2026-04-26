@@ -103,7 +103,7 @@ export class HtmlPage {
     return `<header>
     <h1>${this.headline}</h1>
     <p>${this.pitch}</p>
-    <button class="cta-button">Começar Agora</button>
+    <a href="#como-funciona" class="cta-button">Conhecer o Boss</a>
   </header>`;
   }
 
