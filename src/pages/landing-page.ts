@@ -86,6 +86,10 @@ export class HtmlPage {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Boss — orquestrador de agents DevOps especialistas no Azure. Automatize clusters ARO, redes, identidades e CI/CD com infraestrutura como código.">
+  <meta property="og:title" content="Boss — Orquestrador DevOps para Azure">
+  <meta property="og:description" content="Boss decompõe pedidos complexos em agents especialistas no Azure, consolidando infraestrutura como código pronta para uso.">
+  <meta property="og:type" content="website">
   <title>Boss - Orquestrador DevOps para Azure</title>
   <style>
     ${this.getStyles()}
