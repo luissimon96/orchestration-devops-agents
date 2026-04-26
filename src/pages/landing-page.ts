@@ -73,7 +73,7 @@ export class HtmlPage {
         <li>Cada agent executa sua tarefa independentemente</li>
         <li>Boss agrega todos os resultados em um único delivery</li>
       </ol>
-      <p style="margin-top: 20px;"><strong>Resultado Final:</strong> Terraform modules, GitHub Actions pipeline, Argo CD GitOps, e documentação completa prontos para deploy no Azure.</p>
+      <p style="margin-top: 20px;"><strong>Resultado Final:</strong> Terraform files (<code>main.tf</code>, <code>variables.tf</code>), <code>github-actions.yml</code>, <code>argo-app.yaml</code> e documentação completa prontos para deploy no Azure.</p>
     </section>`;
   }
 
@@ -113,8 +113,8 @@ export class HtmlPage {
     
     <section>
       <h2>Por que Boss?</h2>
-      <p>DevOps moderno exige coordenação entre múltiplas disciplinas: networking, identidade, plataforma, infraestrutura como código e pipelines. Boss automatiza essa orquestração.</p>
-      <p>Resultado: Azure Red Hat OpenShift completamente provisionado com Terraform, GitOps e CI/CD, em minutos.</p>
+      <p>DevOps moderno exige coordenação entre múltiplas disciplinas: networking, identidade, plataforma, infraestrutura como código e pipelines. Boss automatiza essa orquestração com controle total do processo.</p>
+      <p>Resultado: Azure Red Hat OpenShift completamente provisionado com Terraform, GitOps e CI/CD, em minutos — com rastreabilidade de cada etapa.</p>
     </section>
     
     <section>
@@ -127,6 +127,19 @@ export class HtmlPage {
         <li>Azure Key Vault para secrets management</li>
         <li>Azure Container Registry para imagens</li>
         <li>Azure Storage para Terraform state</li>
+      </ul>
+      <p style="margin-top: 20px;">A consolidação determinística dos resultados garante que cada agent entrega seu artefato de forma previsível, e o Boss agrega tudo em um único delivery auditável.</p>
+    </section>
+
+    <section>
+      <h2>Governança e Auditabilidade</h2>
+      <p>Cada sub-agent opera com ownership claro de sua responsabilidade: Rede, Identidade, Plataforma ou Terraform. O Boss mantém controle centralizado do fluxo, garantindo visibilidade total do progresso.</p>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Log de execução completo de cada agent</li>
+        <li>Rastreabilidade de tarefas do início ao artefato final</li>
+        <li>Status em tempo real por agent e por etapa</li>
+        <li>Auditabilidade end-to-end: quem fez o quê e quando</li>
+        <li>Nenhuma etapa ocorre como caixa-preta — tudo é visível e rastreável</li>
       </ul>
     </section>
   </main>`;
