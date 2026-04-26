@@ -142,6 +142,29 @@ export class HtmlPage {
         <li>Nenhuma etapa ocorre como caixa-preta — tudo é visível e rastreável</li>
       </ul>
     </section>
+
+    <section>
+      <h2>Sobre o Time</h2>
+      <p>O Boss foi construído por engenheiros com mais de 8 anos de experiência em DevOps, Azure e Kubernetes — especialistas em arquitetura cloud-native e automação de infraestrutura.</p>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Certificações: AZ-104, AZ-400, CKA — comprovando expertise em Azure e Kubernetes</li>
+        <li>Mais de 200+ clusters OpenShift e AKS provisionados em produção</li>
+        <li>50+ projetos de migração para Azure Red Hat OpenShift entregues</li>
+        <li>Contribuidores ativos em projetos open-source de infraestrutura como código</li>
+      </ul>
+      <p style="margin-top: 15px;">Cada decisão de design do Boss reflete lições aprendidas em ambientes reais de produção — sem abstrações artificiais, com total rastreabilidade e visibilidade de cada etapa.</p>
+    </section>
+
+    <section>
+      <h2>O que você recebe</h2>
+      <p>Ao final de cada execução, o Boss entrega artefatos prontos para produção. Nada de rascunhos — tudo revisado, validado e auditado pelos agents especializados.</p>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>Terraform (IaC)</strong> — Arquivos <code>main.tf</code> e <code>variables.tf</code> com toda a infraestrutura Azure provisionável via <code>terraform apply</code></li>
+        <li><strong>GitHub Actions (CI/CD)</strong> — Pipeline <code>github-actions.yml</code> com build, test, push ACR e deploy automático</li>
+        <li><strong>Argo CD (GitOps)</strong> — Manifesto <code>argo-app.yaml</code> para bootstrap GitOps no cluster Azure Red Hat OpenShift</li>
+        <li><strong>Documentação técnica</strong> — README gerado automaticamente com arquitetura, variáveis, pré-requisitos e exemplos de uso</li>
+      </ul>
+    </section>
   </main>`;
   }
 
